@@ -1,7 +1,7 @@
 services:
   fp-svc:
-    build:
-      context:
+    build: 
+      context: . 
       additional contexts:configs:
         - final-project=https://github.com/lr98524/courses.git
     image: lr98524/final-project-image:docker-compose-build-tag
