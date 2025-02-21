@@ -27,8 +27,21 @@ This is a local deployment to serve the Github Pages app of [lr98524.github.io/I
     ```bash
    docker compose up -d;
     ```
-3. Visit the hompage by going to `http://localhost:8081` 
-4. TO down the compose stack.
+3. Visit the hompage by going to [localhost:8081](http://localhost:8081) in the browser.
+4. Click the link you find on the hompage. 
+5. To monitor services, attach to the watchdog and curl different services.
+    ```bash
+   docker compose attach watchdog-svc;
+    ```
+    (From inside watchdog-svc)
+    ```bash
+   apk add curl;
+   curl http://fp-svc:7901/; # proxied to http://hp-svc:6969/ (homepage)
+   curl http://hp-svc:6969/; # hits http://hp-svc:6969/ (homepage)
+   curl http://fp-svc:7901/about/ # hits the pages site (simple about, will leave in for this, but expect more soon!)
+    ```
+    Use `ctrl-d` to exit and restart that main shell process.
+6. To down the compose stack.
     ```bash
     docker compose down;
     ```
