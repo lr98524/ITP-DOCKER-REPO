@@ -2,8 +2,8 @@
 
 mkdir -p volumes/final-project/config
 rm -rf volumes/final-project/config/*
-mkdir -p volumes/final-project/{config,html}
-rm -rf volumes/final-project/{config,html}/*
+mkdir -p volumes/home-page/{config,html}
+rm -rf volumes/home-page/{config,html}/*
 
 docker pull nginx:alpine3.21
 docker run --rm --name temp-nginx -d nginx:alpine3.21
