@@ -1,0 +1,10 @@
+# Ignore all files
+*
+#Except the following
+!/.gitignore
+!/README.md
+!/docker-compose.yaml
+!/Dockerfile
+scripts/*
+!/scripts/
+!/scripts/init.sh
