@@ -27,7 +27,8 @@ This is a local deployment to serve the Github Pages app of [lr98524.github.io/I
     ```bash
    docker compose up -d;
     ```
-3. TO down the compose stack.
+3. Visit the hompage by going to `http://localhost:8081` 
+4. TO down the compose stack.
     ```bash
     docker compose down;
     ```
