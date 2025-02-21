@@ -1,18 +1,18 @@
 #!/bin/bash
 
-mdkdir -p volumes/final-project/config
+mkdir -p volumes/final-project/config
 rm -rf volumes/final-project/config/*
-mdkdir -p volumes/final-project/{config,html}
+mkdir -p volumes/final-project/{config,html}
 rm -rf volumes/final-project/{config,html}/*
 
 docker pull nginx:alpine3.21
-docker run --rm --name temp-ngnix -d nginx:alpine3.21
+docker run --rm --name temp-nginx -d nginx:alpine3.21
 
 docker cp temp-nginx:/etc/nginx.conf.d volumes/final-project/config
-docker cp temp-nginx:  etc/nginx/nginx.conf volumes/final-project/config/nginx.conf
+docker cp temp-nginx:/etc/nginx/nginx.conf volumes/final-project/config/nginx.conf
 
 docker cp temp-nginx:/etc/nginx.conf.d volumes/home-page/config
-docker cp temp-nginx:  etc/nginx/nginx.conf volumes/home-page/config/nginx.conf
+docker cp temp-nginx:/etc/nginx/nginx.conf volumes/home-page/config/nginx.conf
 
 docker cp temp-nginx:/usr/share/nginx/html volumes/home-page/
 
@@ -21,13 +21,13 @@ docker stop temp-nginx
 # find and replace 80 with 7901 in volumes/final-project/conf.d/default.conf
 sed -i 's/80/7901/g' volumes/final-project/config/conf.d/default.conf
 
-LOC_BLOCK =$(cat <<EOF  
+LOC_BLOCK=$(cat <<EOF  
         index   index.html index.htm;
 EOF
 )
-FP_REPO_NAME = "ITP-Code"
+FP_REPO_NAME="ITP-Code"
 
-NEW_LOC_BLOCK =$(cat <<EOF  
+NEW_LOC_BLOCK=$(cat <<EOF  
     location / {
         proxy_pass http://hp-svc:6969;
     }
@@ -40,9 +40,9 @@ EOF
 
 perl -0777 -i -pe "s#$LOC_BLOCK#$NEW_LOC_BLOCK#g" volumes/final-project/config/conf.d/default.conf
 
-sed -i 's/80/6969/g' volumes/home=page/config/conf.d/default.conf
+sed -i 's/80/6969/g' volumes/home-page/config/conf.d/default.conf
 
-OLD_HTML_BODY =$(cat <<EOF
+OLD_HTML_BODY=$(cat <<EOF
 <body>
 <h1>Welcomie to nginx!</h1>
 <p>If you see this page, the nginx web server is successfully installed and
@@ -58,9 +58,9 @@ Commerical support is available at
 EOF
 )
 
-NEW_HTML_BODY = $(cat <<EOF
+NEW_HTML_BODY=$(cat <<EOF
 <body>
-<h1>Home<h1>
+<h1>Home</h1>
     <p>Please visit the <a href="$FP_REPO_NAME/">$FP_REPO_NAME</a> page </p>
 </body>
 EOF
