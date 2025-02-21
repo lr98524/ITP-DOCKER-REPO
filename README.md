@@ -28,4 +28,6 @@ This is a local deployment to serve the Github Pages app of [lr98524.github.io/I
    docker compose up -d;
     ```
 3. TO down the compose stack.
+    ```bash
     docker compose down;
+    ```
