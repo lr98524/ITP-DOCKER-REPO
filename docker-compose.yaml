@@ -1,31 +1,15 @@
 services:
-  fp-svc:
-    build: 
-      context: . 
-      additional_contexts:
-        - final-project=https://github.com/lr98524/ITP-Code.git
-    image: lr98524/final-project-image:docker-compose-build-tag
-    container_name: fp-c
-    ports:
-      - 8081:7901
-    volumes:
-      - ./volumes/final-project/config/conf.d:/etc/nginx/conf.d
-      - ./volumes/final-project/config/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - hp-svc
-  hp-svc:
+  http-svc:
     image: nginx:alpine3.21
     container_name: hp-c
+    ports: 
+      - 8089:80
     volumes:
-      - ./volumes/home-page/config/conf.d:/etc/nginxconf.d
-      - ./volumes/home-page/config/nginx.conf:/etc/nginx/nginx.conf
-      - ./volumes/home-page/html:/usr/share/nginx/html
-  watchdog-svc:
-    image: alpine:3.21.3
-    container_name: watchdog-c
-    tty: true
-    stdin_open: true
-    command: sh
-    restart: unless-stopped
-    depends_on:
-      - fp-svc
+      - ./volumes/config/conf.d:/etc/nginxconf.d
+      - ./volumes/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./volumes/html:/usr/share/nginx/html
+  php-svc:
+    image: php:8.1.31-fpm-alpine3.21
+    container_name: php-c
+    volumes:
+      - ./volumes/html:/usr/share/nginx/html
