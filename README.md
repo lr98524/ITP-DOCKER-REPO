@@ -1,5 +1,6 @@
 # Docker Static App Deployment
-This is a local deployment to serve the Github Pages app of [lr98524.github.io/ITP-Code](https://lr98524.github.io/ITP-Code)
+This is a local deployment to serve the Github Pages app of [lr98524.github.io/ITP-Code](https://lr98524.github.io/ITP-Code).
+It will bring you to the about page of the site explaining what this Gitub page is, and why it exists.
 
 ## Archetecture
 
