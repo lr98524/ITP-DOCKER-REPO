@@ -10,6 +10,7 @@ to the `fp-svc` which has a webserver on port `7901`
     - for `http://fp-svc:7091/ITP-Code/`, the container serves the pages site stored inside the image at `/usr/share/nginx/html` (this came from a Git repo)
 - The `hp-svc` serves a landing page on port `6969/` that comes from a volume and has a link to `http://localhost:8081/ITP-Code/`
 
+- php will talk to mysql over port `3311` when it needs to get to do data in the to do app
 
 ## Prerequisites
 - Docker version (27.5.1, build 9f9e405)+
@@ -30,7 +31,7 @@ to the `fp-svc` which has a webserver on port `7901`
    docker compose up -d;
     ```
 3. Visit the hompage by going to [localhost:8089](http://localhost:8089) in the browser.
-4. Click the link you find on the hompage. 
+4. Click the links you find on the hompage. 
 You should see the PHP info with some purple coloring.
 5. To down the compose stack.
     ```bash
